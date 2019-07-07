@@ -4,6 +4,8 @@
  * This generated file contains a sample Kotlin library project to get you started.
  */
 
+val ktlint by configurations.creating
+
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
@@ -26,7 +28,29 @@ dependencies {
     // Use the Kotlin JUnit integration.
 	testImplementation("org.junit.jupiter:junit-jupiter:5.5.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
+
+    ktlint("com.pinterest:ktlint:0.33.0")
 }
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+task("ktlint", JavaExec::class)  {
+    group = "verification"
+    description = "Check Kotlin code style."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.getByName("ktlint")
+    args("src/**/*.kt")
+}
+
+tasks.named("check") {
+    dependsOn( ktlint )
+}
+
+task("ktlintFormat", JavaExec::class) {
+    group = "formatting"
+    description = "Fix Kotlin code style deviations."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.getByName("ktlint")
+    args("-F", "-experimental", "src/**/*.kt")
 }
