@@ -47,10 +47,10 @@ tasks.named("check") {
     dependsOn( ktlint )
 }
 
-task("ktlintFormat", JavaExec::class) {
+task("fmt", JavaExec::class) {
     group = "formatting"
     description = "Fix Kotlin code style deviations."
     main = "com.pinterest.ktlint.Main"
     classpath = configurations.getByName("ktlint")
-    args("-F", "-experimental", "src/**/*.kt")
+    args("-F", "--experimental", "src/**/*.kt")
 }

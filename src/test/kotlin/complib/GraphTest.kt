@@ -3,10 +3,6 @@ package complib
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
-
 
 class UnionFindTests {
 
@@ -30,5 +26,5 @@ class UnionFindTests {
         assertEquals(uf.findRoot(5), 1)
         assertEquals(uf.getSize(1), 5)
         assertEquals(uf.getSize(4), 5)
-        }
     }
+}

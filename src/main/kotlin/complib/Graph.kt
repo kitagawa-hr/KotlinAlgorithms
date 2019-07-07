@@ -1,6 +1,5 @@
 package complib
 
-
 class UnionFind(n: Int) {
     data class Node(var parent: Int, var size: Int)
     val nodes = Array<Node>(n) { Node(parent = it, size = 1) }
