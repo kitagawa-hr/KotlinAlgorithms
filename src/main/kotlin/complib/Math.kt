@@ -22,11 +22,12 @@ fun isPrime(num: Long): Boolean {
     if (num in listOf(2L, 3L)) return true
     if (num % 6 in listOf(0L, 2L, 3L, 4L)) return false
     val sqrt = Math.sqrt(num.toDouble()).toLong()
-    for (n in 5 until sqrt step 6) {
+    for (n in 5..sqrt step 6) {
         if (num % n == 0L) return false
     }
-    for (n in 7 until sqrt step 6) {
+    for (n in 7..sqrt step 6) {
         if (num % n == 0L) return false
     }
     return true
 }
+

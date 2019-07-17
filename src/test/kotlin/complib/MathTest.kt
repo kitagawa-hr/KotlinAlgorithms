@@ -108,6 +108,7 @@ internal class IsPrimeTest {
             "1, false",
             "4, false",
             "16, false",
+            "25, false",
             "81, false",
             "2619, false",
             "3553, false"
