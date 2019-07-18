@@ -1,7 +1,8 @@
-package complib
+package complib.collections
 
-import org.junit.jupiter.api.Assertions.assertEquals
+
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.*
 
 class LowerBoundTests {
 
@@ -33,17 +34,3 @@ class UpperBoundTests {
     }
 }
 
-class ProductTests {
-    @Test
-    fun productTests() {
-        val res = product(listOf(1, 2), listOf(3, 4), listOf(5, 6)).iterator()
-        assertEquals(res.next(), listOf(1, 3, 5))
-        assertEquals(res.next(), listOf(1, 3, 6))
-        assertEquals(res.next(), listOf(1, 4, 5))
-        assertEquals(res.next(), listOf(1, 4, 6))
-        assertEquals(res.next(), listOf(2, 3, 5))
-        assertEquals(res.next(), listOf(2, 3, 6))
-        assertEquals(res.next(), listOf(2, 4, 5))
-        assertEquals(res.next(), listOf(2, 4, 6))
-    }
-}

@@ -1,4 +1,4 @@
-package complib
+package complib.math
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -15,7 +15,8 @@ internal class GcdTests {
             "10,  100, 10",
             "24,  32, 8"
     )
-    fun gcdIntTest(first: Int, second: Int, expectedResult: Int) {
+    fun gcdIntTest(first: Int, second: Int, expectedResult: Int)
+    {
         assertEquals(expectedResult, gcd(first, second)) {
             "gcd($first, $second) should equal $expectedResult"
         }
@@ -58,22 +59,6 @@ internal class PowTest {
     }
 }
 
-internal class DotTest {
-
-    @Test
-    fun dotInt() {
-        val v1 = listOf(1, 2, 3)
-        val v2 = listOf(1, 3, 5)
-        assertEquals(v1.dot(v2), 1 * 1 + 2 * 3 + 3 * 5)
-    }
-
-    @Test
-    fun dotLong() {
-        val v1 = listOf(1L, 2L, 3L)
-        val v2 = listOf(1L, 3L, 5L)
-        assertEquals(v1.dot(v2), 1L * 1L + 2L * 3L + 3L * 5L)
-    }
-}
 
 internal class IsSquareTest {
     @ParameterizedTest(name = "{0} is square = {1}")

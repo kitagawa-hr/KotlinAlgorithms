@@ -1,4 +1,4 @@
-package complib
+package complib.math
 
 fun gcd(x: Int, y: Int): Int = if (y == 0) x else gcd(y, x % y)
 fun gcd(x: Long, y: Long): Long = if (y == 0L) x else gcd(y, x % y)
@@ -6,16 +6,11 @@ fun gcd(x: Long, y: Long): Long = if (y == 0L) x else gcd(y, x % y)
 fun Int.pow(x: Double): Double = Math.pow(this.toDouble(), x)
 fun Long.pow(x: Double): Double = Math.pow(this.toDouble(), x)
 
-fun List<Int>.dot(other: List<Int>): Int =
-        this.mapIndexed { index, value -> value * other[index] }.sum()
-
-fun List<Long>.dot(other: List<Long>): Long =
-        this.mapIndexed { index, value -> value * other[index] }.sum()
-
 fun isSquare(num: Long): Boolean {
     val sqrt = Math.sqrt(num.toDouble()).toLong()
     return sqrt * sqrt == num || (sqrt + 1L) * (sqrt + 1L) == num
 }
+
 
 fun isPrime(num: Long): Boolean {
     if (num == 1L) return false
@@ -30,4 +25,3 @@ fun isPrime(num: Long): Boolean {
     }
     return true
 }
-
