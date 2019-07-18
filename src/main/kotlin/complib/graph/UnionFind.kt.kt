@@ -3,7 +3,7 @@ package complib.graph
 class UnionFind(n: Int) {
     data class Node(var parent: Int, var size: Int)
 
-    private val nodes = Array<Node>(n) { Node(parent = it, size = 1) }
+    private val nodes = Array(n) { Node(parent = it, size = 1) }
     fun findRoot(x: Int): Int {
         if (x == this.nodes[x].parent) return x
         nodes[x].parent = findRoot(nodes[x].parent)
