@@ -59,3 +59,8 @@ fun <T> List<T>.permutations(): Set<List<T>> = when {
                 .toSet()
     }
 }
+
+fun <T, R> Iterable<T>.scanLeft(initial: R, operation: (acc: R, T) -> R): Sequence<R> {
+    var last = initial
+    return this.asSequence().map { last = operation(last, it); last }
+}

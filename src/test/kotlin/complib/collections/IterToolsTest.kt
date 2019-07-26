@@ -2,9 +2,11 @@ package complib.collections
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.DisplayName
 
 internal class DotTest {
 
+    @DisplayName("Dot of [1, 2, 3] and [1, 3, 5] is 22")
     @Test
     fun dotInt() {
         val v1 = listOf(1, 2, 3)
@@ -12,6 +14,7 @@ internal class DotTest {
         assertEquals(1 * 1 + 2 * 3 + 3 * 5, v1.dot(v2))
     }
 
+    @DisplayName("Dot of [1L, 2L, 3L] and [1L, 3L, 5L] is 22L")
     @Test
     fun dotLong() {
         val v1 = listOf(1L, 2L, 3L)
@@ -118,4 +121,16 @@ internal class PermutationsTests {
         assertEquals(expected2, res2)
 
     }
+}
+
+internal class ScanLeftTest {
+
+    @DisplayName("accumulative sum of (1..10)")
+    @Test
+    fun accumulativeSum() {
+        val res = (1..10).scanLeft(0) { a, b -> a + b }.toList()
+        val expected = listOf(1, 3, 6, 10, 15, 21, 28, 36, 45, 55)
+        assertEquals(expected, res)
+    }
+
 }
