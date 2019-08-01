@@ -60,6 +60,27 @@ internal class PowTest {
     }
 }
 
+internal class ModPowTest {
+    @ParameterizedTest(name = "{0}.pow{1} % {2} = {3}")
+    @CsvSource(
+            "2, 3, 100, 8",
+            "2, 4, 100, 16",
+            "12, 2, 100, 44"
+    )
+    fun easyCase(n: Long, x: Long, mod: Long, expectedResult: Long) {
+        assertEquals(expectedResult, n.modPow(x, mod))
+    }
+    @ParameterizedTest(name = "{0}.pow{1} % {2} = {3}")
+    @CsvSource(
+            "12, 7, 15, 3",
+            "123456789, 6574837563712, 234567894, 120678297"
+    )
+    fun largeNumCase(n: Long, x: Long, mod: Long, expectedResult: Long) {
+        // from https://atcoder.jp/contests/atc002/submissions/6631978
+        assertEquals(expectedResult, n.modPow(x, mod))
+    }
+
+}
 
 internal class IsSquareTest {
     @ParameterizedTest(name = "{0} is square = {1}")
@@ -129,6 +150,7 @@ class PrimeUtilsTest {
             assertEquals(1, res[5])
             assertEquals(2, res.size)
         }
+
         @DisplayName("59089028305980235 = 5 * 29 * 31^3 * 13678981573")
         @Test
         fun FactorizeTest() {
@@ -155,5 +177,20 @@ class IterateDivideTest {
     )
     fun iterateDivideTest(num: Long, divisor: Long, count: Int, rest: Long) {
         assertEquals(Pair(count, rest), iterateDivide(num, divisor))
+    }
+}
+
+class BinomialTest {
+    @ParameterizedTest(name = "{0}C{1} = {2}")
+    @CsvSource(
+            "10, 0, 1",
+            "10, 1, 10",
+            "10, 2, 45",
+            "10, 3, 120",
+            "28, 14, 40116600",
+            "30, 15, 155117520"
+    )
+    fun binomialTest(n: Int, k: Int, result: Long) {
+        assertEquals(result, binomial(n, k))
     }
 }

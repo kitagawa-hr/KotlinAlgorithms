@@ -1,15 +1,30 @@
 package complib.math
 
-fun gcd(x: Int, y: Int): Int = if (y == 0) x else gcd(y, x % y)
-fun gcd(x: Long, y: Long): Long = if (y == 0L) x else gcd(y, x % y)
+tailrec fun gcd(x: Int, y: Int): Int = if (y == 0) x else gcd(y, x % y)
+tailrec fun gcd(x: Long, y: Long): Long = if (y == 0L) x else gcd(y, x % y)
 
 fun Int.pow(x: Double): Double = Math.pow(this.toDouble(), x)
 fun Long.pow(x: Double): Double = Math.pow(this.toDouble(), x)
+
+fun Long.modPow(x: Long, mod: Long): Long {
+    // a ^ (2^(exp)) % mod
+    tailrec fun binModPow(a: Long, exp: Long): Long = when (exp) {
+        0L -> a % mod
+        else -> binModPow(a * a % mod, exp - 1)
+    }
+    return (0..63).asSequence()
+            .map { (x shr it) and 1 }
+            .withIndex()
+            .filter { it.value > 0 }
+            .map { binModPow(this, it.index.toLong()) }
+            .reduce { a, b -> a * b % mod }
+}
 
 fun isSquare(num: Long): Boolean {
     val sqrt = Math.sqrt(num.toDouble()).toLong()
     return sqrt * sqrt == num || (sqrt + 1L) * (sqrt + 1L) == num
 }
+
 
 object PrimeUtils {
     fun isPrime(num: Long): Boolean {
@@ -63,4 +78,10 @@ fun iterateDivide(num: Long, divisor: Long): Pair<Int, Long> {
         count++
     }
     return Pair(count, n)
+}
+
+fun binomial(n: Int, k: Int): Long = when (k) {
+    0 -> 1L
+    1 -> n.toLong()
+    else -> binomial(n - 1, k - 1) * n / k
 }
