@@ -6,25 +6,19 @@ fun List<Int>.dot(other: List<Int>): Int =
 fun List<Long>.dot(other: List<Long>): Long =
         this.mapIndexed { index, value -> value * other[index] }.sum()
 
-fun <T> product(vararg lists: List<T>): List<List<T>> {
-    fun <T> oneDimTimesOne(left: List<T>, right: List<T>): List<List<T>> =
-            left.flatMap { lelem -> right.map { relem -> listOf(lelem, relem) } }
 
-    fun <T> twoDimTimesOne(left: List<List<T>>, right: List<T>): List<List<T>> {
-        val product = mutableListOf<List<T>>()
-        for (list in left) {
-            for (element in right) {
-                product.add(list + listOf(element))
-            }
-        }
-        return product
-    }
+fun <T> product(vararg lists: List<T>): Sequence<List<T>> {
+    fun <T> productTwoList(left: List<T>, right: List<T>): Sequence<List<T>> =
+            left.asSequence().flatMap { leftElem -> right.asSequence().map { listOf(leftElem, it) } }
+
+    fun <T> product2DListAnd1DList(list2D: Sequence<List<T>>, list1D: List<T>): Sequence<List<T>> =
+            list2D.flatMap { seq -> list1D.asSequence().map { seq + it } }
+
     require(lists.size >= 2)
-    return lists
+    return lists.asSequence()
             .drop(2)
-            .fold(oneDimTimesOne(lists[0], lists[1])) { acc, suc -> twoDimTimesOne(acc, suc) }
+            .fold(productTwoList(lists[0], lists[1])) { acc, suc -> product2DListAnd1DList(acc, suc) }
 }
-
 
 fun <T> Collection<T>.powerSet(): Set<Set<T>> = powerSet(this, setOf(setOf()))
 
