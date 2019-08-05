@@ -82,6 +82,28 @@ internal class ModPowTest {
 
 }
 
+internal class ModInvTest{
+    @ParameterizedTest(name = "{0} ^ -1 % {1} = {2}")
+    @CsvSource(
+            "1, 13, 1",
+            "2, 13, 7",
+            "3, 13, 9",
+            "4, 13, 10",
+            "5, 13, 8",
+            "6, 13, 11",
+            "7, 13, 2",
+            "8, 13, 5",
+            "9, 13, 3",
+            "10, 13, 4",
+            "11, 13, 6",
+            "12, 13, 12"
+    )
+    fun `modInv of mod 13`(n: Long, mod: Long, expectedResult: Long) {
+        assertEquals(expectedResult, n.modInv(mod))
+    }
+
+}
+
 internal class IsSquareTest {
     @ParameterizedTest(name = "{0} is square = {1}")
     @CsvSource(

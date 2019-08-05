@@ -20,6 +20,8 @@ fun Long.modPow(x: Long, mod: Long): Long {
             .reduce { a, b -> a * b % mod }
 }
 
+fun Long.modInv(mod: Long): Long = this.modPow(mod-2, mod)
+
 fun isSquare(num: Long): Boolean {
     val sqrt = Math.sqrt(num.toDouble()).toLong()
     return sqrt * sqrt == num || (sqrt + 1L) * (sqrt + 1L) == num
