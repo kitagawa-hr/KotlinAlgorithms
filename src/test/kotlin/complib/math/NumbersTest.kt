@@ -104,6 +104,31 @@ internal class ModInvTest{
 
 }
 
+internal class BinomialModTest{
+    @ParameterizedTest(name = "{0} C {1} % {2} == {3}")
+    @CsvSource(
+            "4, 2, 10000, 6",
+            "10, 2, 10000, 45",
+            "10, 8, 10000, 45",
+            "10, 3, 10000, 120",
+            "10, 7, 10000, 120",
+            "4, 0, 10000, 1",
+            "4, 4, 10000, 1"
+    )
+    fun `nCk % bigmod == nCk`(n: Int, k:Int, mod: Long, expectedResult: Long) {
+        assertEquals(expectedResult, binomialMod(n, k, mod))
+    }
+
+    @ParameterizedTest(name = "{0} C {1} % {2} == {3}")
+    @CsvSource(
+            "4, 2, 13, 6",
+            "10, 2, 13, 6",
+            "10, 3, 13, 12"
+    )
+    fun `nCk % 13`(n: Int, k:Int, mod: Long, expectedResult: Long) {
+        assertEquals(expectedResult, binomialMod(n, k, mod))
+    }
+}
 internal class IsSquareTest {
     @ParameterizedTest(name = "{0} is square = {1}")
     @CsvSource(

@@ -20,13 +20,26 @@ fun Long.modPow(x: Long, mod: Long): Long {
             .reduce { a, b -> a * b % mod }
 }
 
-fun Long.modInv(mod: Long): Long = this.modPow(mod-2, mod)
+fun Long.modInv(mod: Long): Long = this.modPow(mod - 2, mod)
+
+fun binomialMod(n: Int, k: Int, mod: Long): Long = when (k) {
+    // n(n-1)...(n-k+1) / k!
+    0, n -> 1L
+    else -> {
+        val numer = (n downTo n - k + 1)
+                .map { it.toLong() }
+                .reduce { a, b -> (a * b) % mod }
+        val denom = (1..k)
+                .map { it.toLong() }
+                .reduce { a, b -> (a * b) % mod }
+        (numer * denom.modInv(mod)) % mod
+    }
+}
 
 fun isSquare(num: Long): Boolean {
     val sqrt = Math.sqrt(num.toDouble()).toLong()
     return sqrt * sqrt == num || (sqrt + 1L) * (sqrt + 1L) == num
 }
-
 
 object PrimeUtils {
     fun isPrime(num: Long): Boolean {
@@ -70,7 +83,6 @@ object PrimeUtils {
         return result
     }
 }
-
 
 fun iterateDivide(num: Long, divisor: Long): Pair<Int, Long> {
     var n = num
