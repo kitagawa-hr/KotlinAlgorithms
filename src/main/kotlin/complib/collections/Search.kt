@@ -36,3 +36,16 @@ fun <T : Comparable<T>> List<T?>.upperBound(
     return low
 }
 
+fun binarySearch(range: Pair<Int, Int>, f: (Int) -> Boolean): Int{
+    // f(x) == if(x < y) false else true となるyを求める
+    var (low, high) = range
+    while(low < high){
+        val mid = (low + high) / 2
+        if(f(mid)){
+            high = mid
+        }else{
+            low = mid + 1
+        }
+    }
+    return low
+}
