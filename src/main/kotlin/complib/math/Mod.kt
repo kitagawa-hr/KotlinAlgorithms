@@ -1,8 +1,9 @@
 package complib.math
 
 fun Long.modPow(x: Long, mod: Long): Long {
-    // a ^ (2^(exp)) % mod
+    // this ^ x % mod
     tailrec fun binModPow(a: Long, exp: Long): Long = when (exp) {
+        // a ^ (2^(exp)) % mod
         0L -> a % mod
         else -> binModPow(a * a % mod, exp - 1)
     }

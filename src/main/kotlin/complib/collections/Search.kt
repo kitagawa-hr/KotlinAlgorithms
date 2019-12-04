@@ -37,7 +37,7 @@ fun <T : Comparable<T>> List<T?>.upperBound(
 }
 
 fun binarySearch(range: Pair<Int, Int>, f: (Int) -> Boolean): Int{
-    // f(x) == if(x < y) false else true となるyを求める
+    // search y such that `f(x) == if(x < y) false else true`
     var (low, high) = range
     while(low < high){
         val mid = (low + high) / 2
