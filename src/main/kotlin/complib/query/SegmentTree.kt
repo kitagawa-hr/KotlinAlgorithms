@@ -2,7 +2,6 @@ package complib.query
 
 import complib.math.Monoid
 
-
 class SegmentTree<T>(array: Array<T>, private val monoid: Monoid<T>) {
     private val n = array.size
     private val tree = MutableList(2 * n) {

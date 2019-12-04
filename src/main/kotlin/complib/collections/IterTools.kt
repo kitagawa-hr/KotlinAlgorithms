@@ -1,23 +1,22 @@
 package complib.collections
 
 fun List<Int>.dot(other: List<Int>): Int =
-        this.mapIndexed { index, value -> value * other[index] }.sum()
+    this.mapIndexed { index, value -> value * other[index] }.sum()
 
 fun List<Long>.dot(other: List<Long>): Long =
-        this.mapIndexed { index, value -> value * other[index] }.sum()
-
+    this.mapIndexed { index, value -> value * other[index] }.sum()
 
 fun <T> product(vararg lists: List<T>): Sequence<List<T>> {
     fun <T> productTwoList(left: List<T>, right: List<T>): Sequence<List<T>> =
-            left.asSequence().flatMap { leftElem -> right.asSequence().map { listOf(leftElem, it) } }
+        left.asSequence().flatMap { leftElem -> right.asSequence().map { listOf(leftElem, it) } }
 
     fun <T> product2DListAnd1DList(list2D: Sequence<List<T>>, list1D: List<T>): Sequence<List<T>> =
-            list2D.flatMap { seq -> list1D.asSequence().map { seq + it } }
+        list2D.flatMap { seq -> list1D.asSequence().map { seq + it } }
 
     require(lists.size >= 2)
     return lists.asSequence()
-            .drop(2)
-            .fold(productTwoList(lists[0], lists[1])) { acc, suc -> product2DListAnd1DList(acc, suc) }
+        .drop(2)
+        .fold(productTwoList(lists[0], lists[1])) { acc, suc -> product2DListAnd1DList(acc, suc) }
 }
 
 fun <T> Collection<T>.powerSet(): Set<Set<T>> = powerSet(this, setOf(setOf()))
@@ -31,7 +30,8 @@ fun <T> Set<T>.combinations(n: Int): Set<Set<T>> = when {
     n < 0 -> throw Error("n must be positive, but got $n")
     n == 0 -> setOf(setOf())
     n >= size -> setOf(toSet())
-    else -> powerSet()
+    else ->
+        powerSet()
             .filter { it.size == n }
             .toSet()
 }
@@ -49,8 +49,8 @@ fun <T> List<T>.permutations(): Set<List<T>> = when {
     else -> {
         val element = get(0)
         drop(1).permutations()
-                .flatMap { sublist -> (0..sublist.size).map { i -> sublist.insert(i, element) } }
-                .toSet()
+            .flatMap { sublist -> (0..sublist.size).map { i -> sublist.insert(i, element) } }
+            .toSet()
     }
 }
 

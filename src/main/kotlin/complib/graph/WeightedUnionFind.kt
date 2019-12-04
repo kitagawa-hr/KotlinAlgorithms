@@ -1,6 +1,5 @@
 package complib.graph
 
-
 class WeightedUnionFind(n: Int) {
     data class Node(var parent: Int, var size: Int, var weight: Long)
 
@@ -14,7 +13,7 @@ class WeightedUnionFind(n: Int) {
     }
 
     fun unite(x: Int, y: Int, weight: Long): Boolean {
-        // nodes[x].weight + weight = nodes[y].weightとなるようにする
+        // nodes[x].weight + weight = nodes[y].weight
         val xRoot = findRoot(x)
         val yRoot = findRoot(y)
         if (xRoot == yRoot) return false

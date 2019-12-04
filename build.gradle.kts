@@ -6,7 +6,6 @@
 
 val ktlint by configurations.creating
 
-
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     id("org.jetbrains.kotlin.jvm").version("1.3.11")
@@ -26,7 +25,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     // Use the Kotlin JUnit integration.
-	testImplementation("org.junit.jupiter:junit-jupiter:5.5.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
 
     ktlint("com.pinterest:ktlint:0.33.0")
@@ -35,7 +34,7 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-task("ktlint", JavaExec::class)  {
+task("ktlint", JavaExec::class) {
     group = "verification"
     description = "Check Kotlin code style."
     main = "com.pinterest.ktlint.Main"
@@ -44,7 +43,7 @@ task("ktlint", JavaExec::class)  {
 }
 
 tasks.named("check") {
-    dependsOn( ktlint )
+    dependsOn(ktlint)
 }
 
 task("fmt", JavaExec::class) {

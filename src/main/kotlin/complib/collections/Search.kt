@@ -1,9 +1,9 @@
 package complib.collections
 
 fun <T : Comparable<T>> List<T?>.lowerBound(
-        element: T,
-        fromIndex: Int = 0,
-        toIndex: Int = size
+    element: T,
+    fromIndex: Int = 0,
+    toIndex: Int = size
 ): Int {
     var low = fromIndex
     var high = toIndex
@@ -19,9 +19,9 @@ fun <T : Comparable<T>> List<T?>.lowerBound(
 }
 
 fun <T : Comparable<T>> List<T?>.upperBound(
-        element: T,
-        fromIndex: Int = 0,
-        toIndex: Int = size
+    element: T,
+    fromIndex: Int = 0,
+    toIndex: Int = size
 ): Int {
     var low = fromIndex
     var high = toIndex
@@ -36,14 +36,14 @@ fun <T : Comparable<T>> List<T?>.upperBound(
     return low
 }
 
-fun binarySearch(range: Pair<Int, Int>, f: (Int) -> Boolean): Int{
+fun binarySearch(range: Pair<Int, Int>, f: (Int) -> Boolean): Int {
     // search y such that `f(x) == if(x < y) false else true`
     var (low, high) = range
-    while(low < high){
+    while (low < high) {
         val mid = (low + high) / 2
-        if(f(mid)){
+        if (f(mid)) {
             high = mid
-        }else{
+        } else {
             low = mid + 1
         }
     }

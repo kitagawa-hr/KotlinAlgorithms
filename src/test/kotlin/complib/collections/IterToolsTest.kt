@@ -1,8 +1,8 @@
 package complib.collections
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
 internal class DotTest {
 
@@ -38,15 +38,14 @@ internal class ProductTests {
     }
 }
 
-
 internal class CombinationsTests {
     @Test
     fun combinationsTest1() {
         val res1 = setOf(1, 2, 3).combinations(2)
         val expected1 = setOf(
-                setOf(1, 2),
-                setOf(1, 3),
-                setOf(2, 3)
+            setOf(1, 2),
+            setOf(1, 3),
+            setOf(2, 3)
         )
         assertEquals(expected1, res1)
     }
@@ -55,10 +54,10 @@ internal class CombinationsTests {
     fun combinationsTest2() {
         val res2 = setOf(1, 2, 3, 4).combinations(3)
         val expected2 = setOf(
-                setOf(1, 2, 3),
-                setOf(1, 2, 4),
-                setOf(1, 3, 4),
-                setOf(2, 3, 4)
+            setOf(1, 2, 3),
+            setOf(1, 2, 4),
+            setOf(1, 3, 4),
+            setOf(2, 3, 4)
         )
         assertEquals(expected2, res2)
     }
@@ -69,17 +68,16 @@ internal class PowerSetTest {
     fun powerSetTest() {
         val res = setOf(1, 2, 3).powerSet()
         val expected = setOf(
-                setOf(),
-                setOf(1),
-                setOf(2),
-                setOf(3),
-                setOf(1, 2),
-                setOf(1, 3),
-                setOf(2, 3),
-                setOf(1, 2, 3)
+            setOf(),
+            setOf(1),
+            setOf(2),
+            setOf(3),
+            setOf(1, 2),
+            setOf(1, 3),
+            setOf(2, 3),
+            setOf(1, 2, 3)
         )
         assertEquals(expected, res)
-
     }
 }
 
@@ -111,15 +109,14 @@ internal class PermutationsTests {
     fun permutationsTest() {
         val res2 = listOf(1, 2, 3).permutations()
         val expected2 = setOf(
-                listOf(1, 2, 3),
-                listOf(1, 3, 2),
-                listOf(2, 1, 3),
-                listOf(2, 3, 1),
-                listOf(3, 1, 2),
-                listOf(3, 2, 1)
+            listOf(1, 2, 3),
+            listOf(1, 3, 2),
+            listOf(2, 1, 3),
+            listOf(2, 3, 1),
+            listOf(3, 1, 2),
+            listOf(3, 2, 1)
         )
         assertEquals(expected2, res2)
-
     }
 }
 
@@ -132,5 +129,4 @@ internal class ScanLeftTest {
         val expected = listOf(1, 3, 6, 10, 15, 21, 28, 36, 45, 55)
         assertEquals(expected, res)
     }
-
 }

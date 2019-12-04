@@ -1,10 +1,8 @@
 package complib.collections
 
-
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
-
+import org.junit.jupiter.api.Test
 
 class LowerBoundTests {
 
@@ -36,7 +34,6 @@ class UpperBoundTests {
     }
 }
 
-
 class BinarySearchTest {
 
     @DisplayName("same as lowerBound when used for element search in List")
@@ -44,11 +41,11 @@ class BinarySearchTest {
     fun listSearchTest() {
         val list = listOf<Int>(1, 1, 2, 2, 3, 5, 6, 7, 8, 8, 9)
         val range = 0 to list.size
-        assertEquals(0, binarySearch(range){ list[it] >= 0 })
-        assertEquals(0, binarySearch(range){ list[it] >= 1 })
-        assertEquals(2, binarySearch(range){ list[it] >= 2 })
-        assertEquals(4, binarySearch(range){ list[it] >= 3 })
-        assertEquals(8, binarySearch(range){ list[it] >= 8 })
-        assertEquals(10, binarySearch(range){ list[it] >= 9 })
+        assertEquals(0, binarySearch(range) { list[it] >= 0 })
+        assertEquals(0, binarySearch(range) { list[it] >= 1 })
+        assertEquals(2, binarySearch(range) { list[it] >= 2 })
+        assertEquals(4, binarySearch(range) { list[it] >= 3 })
+        assertEquals(8, binarySearch(range) { list[it] >= 8 })
+        assertEquals(10, binarySearch(range) { list[it] >= 9 })
     }
 }
