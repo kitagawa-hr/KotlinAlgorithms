@@ -1,0 +1,14 @@
+name: Run Gradle on PRs
+on:
+  pull_request:
+    branches:
+    - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: run ktlint
+        run: ./gradlew ktlint
+      - name: run tests
+        run: ./gradlew test

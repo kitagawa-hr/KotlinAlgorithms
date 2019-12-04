@@ -8,11 +8,11 @@ fun Long.modPow(x: Long, mod: Long): Long {
         else -> binModPow(a * a % mod, exp - 1)
     }
     return (0..63).asSequence()
-            .map { (x shr it) and 1 }
-            .withIndex()
-            .filter { it.value > 0 }
-            .map { binModPow(this, it.index.toLong()) }
-            .reduce { a, b -> a * b % mod }
+        .map { (x shr it) and 1 }
+        .withIndex()
+        .filter { it.value > 0 }
+        .map { binModPow(this, it.index.toLong()) }
+        .reduce { a, b -> a * b % mod }
 }
 
 // 1 / x % mod (x ⊥ mod)
@@ -23,11 +23,11 @@ fun binomialMod(n: Int, k: Int, mod: Long): Long = when (k) {
     0, n -> 1L
     else -> {
         val numer = (n downTo n - k + 1)
-                .map { it.toLong() }
-                .reduce { a, b -> (a * b) % mod }
+            .map { it.toLong() }
+            .reduce { a, b -> (a * b) % mod }
         val denom = (1..k)
-                .map { it.toLong() }
-                .reduce { a, b -> (a * b) % mod }
+            .map { it.toLong() }
+            .reduce { a, b -> (a * b) % mod }
         (numer * denom.modInv(mod)) % mod
     }
 }

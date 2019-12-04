@@ -18,9 +18,9 @@ fun generatePrimesBelow(sup: Long): Sequence<Long> {
     if (sup < 2L) return sequenceOf()
     if (sup < 3L) return sequenceOf(2L)
     val seq = (0..sup / 6L)
-            .asSequence()
-            .flatMap { sequenceOf(6 * it + 5L, 6 * it + 7L) }
-            .filter { it < sup }
+        .asSequence()
+        .flatMap { sequenceOf(6 * it + 5L, 6 * it + 7L) }
+        .filter { it < sup }
     return sequenceOf(2L, 3L) + seq.filter { isPrime(it) }
 }
 
@@ -51,4 +51,3 @@ fun iterateDivide(num: Long, divisor: Long): Pair<Int, Long> {
     }
     return Pair(count, n)
 }
-
