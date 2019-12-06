@@ -47,4 +47,14 @@ internal class SqrtDecompositionTest {
         assertEquals(18, sumQuery.query(0, 3))
         assertEquals(10, sumQuery.query(0, 4))
     }
+    @Test
+    fun updateRangeTest() {
+        sumQuery.updateRange(0, 3, 10)
+        // 10, 10, 10, 2, 9, 12, 8, 13, 15
+        assertEquals(30, sumQuery.query(0, 3))
+        sumQuery.updateRange(3, 8, -8)
+        // 10, 10, 10, -8, -8, -8 , -8 , -8 , 15
+        assertEquals(30, sumQuery.query(0, 3))
+        assertEquals(5, sumQuery.query(0, 9))
+    }
 }

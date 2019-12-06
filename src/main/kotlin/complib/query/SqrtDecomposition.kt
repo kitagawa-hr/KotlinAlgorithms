@@ -39,7 +39,22 @@ class SqrtDecomposition<T>(private val array: Array<T>, private val monoid: Mono
     fun update(index: Int, value: T) {
         array[index] = value
         val bi = index / divSize
-        bucket[bi] = array.slice(bi * divSize until (bi + 1) * divSize)
+        updateBucket(bi)
+    }
+
+    private fun updateBucket(bIndex: Int) {
+        bucket[bIndex] = array.slice(bIndex * divSize until (bIndex + 1) * divSize)
             .reduce { a, b -> monoid.combine(a, b) }
+    }
+
+    fun updateRange(left: Int, right: Int, value: T) {
+        // [left, right)
+        require(left in (0 until right) && right <= array.size) {
+            "Invalid Range [$left, $right)"
+        }
+        (left until right).forEach { array[it] = value }
+        val bl = left / divSize
+        val br = right / divSize
+        (bl..br).forEach { updateBucket(it) }
     }
 }
