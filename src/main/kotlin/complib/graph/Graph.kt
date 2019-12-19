@@ -13,7 +13,15 @@ data class Vertex<T : Comparable<T>, E : Comparable<E>>(val data: T? = null) {
         else -> false
     }
 
-    fun removeEdge(to: Int) = edges.removeIf { it.to == to }
+    fun removeEdge(to: Int): Boolean {
+        for ((i, edge) in edges.withIndex()) {
+            if (edge.to == to) {
+                edges.removeAt(i)
+                return true
+            }
+        }
+        return false
+    }
 }
 
 class AdjacentListGraph<T : Comparable<T>, E : Comparable<E>>(
